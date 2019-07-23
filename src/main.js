@@ -5,7 +5,6 @@ import { promisify } from 'util';
 
 import PointCloudConverter from './pointCloudConverter.js';
 import EnsembleConverter from './ensembleConverter.js';
-import Parser from './parser.js';
 import { describeErrorAndBail } from './utils.js';
 
 const read = promisify(fs.readFile);
@@ -53,9 +52,6 @@ const ingestData =  async options => {
             describeErrorAndBail(e);
         }
     }
-
-    let parser = new Parser();
-    parser.parse(result);
 
     // let targetDirectory = process.cwd();
     const targetPath = path.join(directory, output);
