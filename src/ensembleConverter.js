@@ -1,11 +1,9 @@
 import { numberFormatter } from "./utils.js";
 class EnsembleConverter {
 
-    constructor (filename) {
-        this.filename = filename;
-    }
+    constructor () {}
 
-    convert({ path, string }){
+    convert({ path, chromosome, genome, sample, string }){
 
         const stepSize = 3e4;
         const { cell, chr, genomicStart, genomicEnd } = parsePathEncodedGenomicLocation(path);
@@ -35,8 +33,6 @@ class EnsembleConverter {
             // chr-index (1-based) | segment-index (1-based) | Z | X | Y
             let [ chromosomeID, segmentIDString, z, x, y ] = [ tokens[ 0 ], tokens[ 1 ], tokens[ 2 ], tokens[ 3 ], tokens[ 4 ] ];
 
-            let segmentID = parseInt(segmentIDString, 10);
-
             // The chromosome id is 1-based. We use it for a key but make it 0-based.
             let number = parseInt(chromosomeID, 10) - 1;
             let key = number.toString();
@@ -58,10 +54,10 @@ class EnsembleConverter {
         }
 
         let output = [];
-        output.push(`# Conversion of ensemble file ${ this.filename }`);
-        output.push(cell);
-        output.push('genome assembly');
-        output.push(`bed ${ chr }`);
+        output.push(`# Conversion of ensemble file ${ path }`);
+        output.push(`${ sample }`);
+        output.push(`${ genome }`);
+        output.push(`bed ${ chromosome }`);
 
         let keys = Object.keys(dictionary);
         for (let key of keys) {
