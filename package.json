@@ -1,0 +1,31 @@
+{
+  "name": "@dugla/swc",
+  "version": "1.0.0",
+  "description": "Convert point-cloud and ensemble files to single unified format",
+  "main": "src/index.js",
+  "bin": {
+    "@dugla/swc": "bin/swc",
+    "swc": "bin/swc"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cli",
+    "swc"
+  ],
+  "author": "Douglass Turner <douglass.turner@gmail.com> (https://github.com/turner)",
+  "license": "MIT",
+  "dependencies": {
+    "arg": "^4.1.1",
+    "chalk": "^2.4.2",
+    "esm": "^3.2.25"
+  },
+  "files": [
+    "bin/",
+    "src/"
+  ]
+}
