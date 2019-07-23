@@ -17,12 +17,22 @@ npm install -g @dugla/swc
 
 If a point cloud file is being converted:
 
-``swc --pointcloud filename --output filename [--dir output-directory]``
+``swc --pointcloud filename --output filename [--dir output-directory] --chromosome name --genome-assembly assembly``
 
-or
+If an ensemble file is being converted:
 
-``swc -p filename -o filename [-d output-directory]``
+``swc --ensemble filename --output filename [--dir output-directory] --chromosome name --genome-assembly assembly``
 
+Options have the following aliases. Either may be used:
+
+```
+--pointcloud, -p
+--ensemble, -e
+--output, -o
+--dir, -d
+--chromosome, -c
+--genome-assembly, -g
+```
 
 [Example Point Cloud File](https://www.dropbox.com/s/lt9fyrhry8lbdqi/2017-08-03-19-34-25_Location-01.csv?dl=0)
 
@@ -34,14 +44,6 @@ genome_start,genome_end,size_kb,x,y,z
 7400000,8680000,1280,11195.4,6304.68,836.743
 ...
 ```
-
-If an ensemble file is being converted:
-
-``swc --ensemble filename --output filename [--dir output-directory]``
-
-or
-
-``swc -e filename -o filename [-d output-directory]``
 
 [Example Ensemble File](https://www.dropbox.com/s/ycbj30umsu0y809/IMR90_chr21-18-20Mb.csv?dl=0)
 
