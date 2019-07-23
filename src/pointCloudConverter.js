@@ -1,10 +1,8 @@
 class PointCloudConverter {
 
-    constructor (filename) {
-        this.filename = filename;
-    }
+    constructor () {}
 
-    convert(string) {
+    convert({ path, chromosome, genome, sample, string }) {
 
         let raw = string.split(/\r?\n/);
 
@@ -35,10 +33,10 @@ class PointCloudConverter {
         }
 
         let output = [];
-        output.push(`# Conversion of point cloud file ${ this.filename }`);
-        output.push('cell line');
-        output.push('genome assembly');
-        output.push(`bed chr19`);
+        output.push(`# Conversion of point cloud file ${ path }`);
+        output.push(`${ sample }`);
+        output.push(`${ genome }`);
+        output.push(`bed ${ chromosome }`);
 
         let keys = Object.keys(hash);
         for (let key of keys) {

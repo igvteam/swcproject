@@ -1,0 +1,5 @@
+# Ensemble file
+-e ensemble-file/HCT116_chr21-34-37Mb_auxin_cellDiv.csv -o ensemble.sw -c chr21 -g hg38 -s HCT116
+
+# PointCloud file
+-p point-cloud-file/2018-01-11-09-35-19_Location-04_6column.csv -o point-cloud.sw -c chr19 -g hg38 -s Unknown

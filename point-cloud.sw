@@ -1,6 +1,6 @@
 # Conversion of point cloud file point-cloud-file/2018-01-11-09-35-19_Location-04_6column.csv
-cell line
-genome assembly
+Unknown
+hg38
 bed chr19
 trace 0
 7400000 8680000 11233.5 6388.48 682.982

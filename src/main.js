@@ -10,9 +10,7 @@ import { describeErrorAndBail } from './utils.js';
 const read = promisify(fs.readFile);
 const write = promisify(fs.writeFile);
 
-const ingestData =  async options => {
-
-    const { output, pointCloud, ensemble, directory } = options;
+const ingestData =  async ({ pointCloud, ensemble, output, directory, chromosome, genome, sample }) => {
 
     let string = '';
     if (pointCloud) {
@@ -37,17 +35,17 @@ const ingestData =  async options => {
     let converter;
     let result;
     if (pointCloud) {
-        converter = new PointCloudConverter(pointCloud);
+        converter = new PointCloudConverter();
         try {
-            result = converter.convert(string);
+            result = converter.convert({ path: pointCloud, chromosome, genome, sample, string });
         } catch (e) {
             describeErrorAndBail(e);
         }
 
     } else {
-        converter = new EnsembleConverter(ensemble);
+        converter = new EnsembleConverter();
         try {
-            result = converter.convert({ path: ensemble, string });
+            result = converter.convert({ path: ensemble, chromosome, genome, sample, string });
         } catch (e) {
             describeErrorAndBail(e);
         }

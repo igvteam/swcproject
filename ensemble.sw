@@ -1,6 +1,6 @@
 # Conversion of ensemble file ensemble-file/HCT116_chr21-34-37Mb_auxin_cellDiv.csv
 HCT116
-genome assembly
+hg38
 bed chr21
 trace 0
 34000000 34030000 76301 99573 7289
