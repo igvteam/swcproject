@@ -3,6 +3,14 @@
   "version": "1.1.1",
   "description": "Convert point-cloud and ensemble files to single unified format",
   "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/igvteam/swcproject.git"
+  },
+  "bugs": {
+    "url": "https://github.com/igvteam/swcproject/issues"
+  },
+  "homepage": "https://github.com/igvteam/swcproject#readme",
   "bin": {
     "@dugla/swc": "bin/swc",
     "swc": "bin/swc"
@@ -15,7 +23,8 @@
   },
   "keywords": [
     "cli",
-    "swc"
+    "swc",
+    "spacewalk"
   ],
   "author": "Douglass Turner <douglass.turner@gmail.com> (https://github.com/turner)",
   "license": "MIT",
