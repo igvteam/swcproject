@@ -9,7 +9,7 @@ const parse = rawArgv => {
 			'--pointcloud': String,
 			'--ensemble': String,
 			'--output' : String,
-			'--directory' : String,
+			'--dir' : String,
 			'--chromosome' : String,
 			'--genome-assembly' : String,
 			'--sample' : String,
@@ -112,10 +112,10 @@ const usage = () => {
 
 	usage_message.push('');
 	usage_message.push('Pointcloud File');
-	usage_message.push('swc --pointcloud filename --output filename [--dir output-directory] --chromosome name --genome-assembly assembly');
+	usage_message.push('swc --pointcloud filename --output filename [--dir output-directory] --chromosome name --genome-assembly assembly --sample sample-name');
 	usage_message.push('');
 	usage_message.push('Ensemble File');
-	usage_message.push('swc --ensemble filename --output filename [--dir output-directory] --chromosome name --genome-assembly assembly');
+	usage_message.push('swc --ensemble filename --output filename [--dir output-directory] --chromosome name --genome-assembly assembly --sample sample-name');
 
 	usage_message.push('');
 	usage_message.push('Options have the following aliases. Either may be used:');
@@ -125,6 +125,7 @@ const usage = () => {
 	usage_message.push('--dir, -d');
 	usage_message.push('--chromosome, -c');
 	usage_message.push('--genome-assembly, -g');
+	usage_message.push('--sample, -s');
 
 	usage_message.push('');
 	usage_message.push('Example Point Cloud File (https://www.dropbox.com/s/lt9fyrhry8lbdqi/2017-08-03-19-34-25_Location-01.csv?dl=0)');
