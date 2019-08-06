@@ -3,10 +3,10 @@ class EnsembleConverter {
 
     constructor () {}
 
-    convert({ path, chromosome, genome, sample, string }){
+    convert({ path, chr, genome, name, string }){
 
         const stepSize = 3e4;
-        const { cell, chr, genomicStart, genomicEnd } = parsePathEncodedGenomicLocation(path);
+        const { cell, chr:ignore, genomicStart, genomicEnd } = parsePathEncodedGenomicLocation(path);
 
         let raw = string.split(/\r?\n/);
 
@@ -20,7 +20,7 @@ class EnsembleConverter {
         const lines = raw.filter(rawLine => "" !== rawLine);
         raw = null;
 
-        console.time(`convert ensemble with ${ lines.length } traces`);
+        console.time(`convertion of ensemble ${ path } with ${ lines.length } traces`);
 
         // build scratch dictionary
         let dictionary = {};
@@ -54,25 +54,32 @@ class EnsembleConverter {
         }
 
         let output = [];
-        output.push(`# Conversion of ensemble file ${ path }`);
-        output.push(`${ sample }`);
-        output.push(`${ genome }`);
-        output.push(`bed ${ chromosome }`);
+        output.push(`##format=sw1 name=${ name } genome=${ genome }`);
+
+        let column_headings = [];
+        column_headings.push('chromosome');
+        column_headings.push('start');
+        column_headings.push('end');
+        column_headings.push('x');
+        column_headings.push('y');
+        column_headings.push('z');
+
+        output.push(column_headings.join('\t'));
 
         let keys = Object.keys(dictionary);
         for (let key of keys) {
 
-            output.push(`trace ${ keys.indexOf(key)}`);
+            output.push(`trace ${ keys.indexOf( key ) }`);
             const trace = dictionary[ key ];
 
             for (let row of trace) {
                 const { startBP, endBP, x, y, z } = row;
-                output.push(`${ startBP } ${ endBP } ${ x } ${ y } ${ z }`)
+                output.push(`${ chr } ${ startBP } ${ endBP } ${ x } ${ y } ${ z }`)
             }
 
         }
 
-        console.timeEnd(`convert ensemble with ${ lines.length } traces`);
+        console.timeEnd(`convertion of ensemble ${ path } with ${ lines.length } traces`);
 
         return output.join('\n');
     }
