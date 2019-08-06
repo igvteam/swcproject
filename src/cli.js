@@ -10,18 +10,18 @@ const parse = rawArgv => {
 			'--ensemble': String,
 			'--output' : String,
 			'--dir' : String,
-			'--chromosome' : String,
-			'--genome-assembly' : String,
-			'--sample' : String,
+			'--chr' : String,
+			'--genome' : String,
+			'--name' : String,
 
 			// Aliases
 			'-p': '--pointcloud',
 			'-e': '--ensemble',
 			'-o': '--output',
 			'-d': '--dir',
-			'-c': '--chromosome',
-			'-g': '--genome-assembly',
-			'-s': '--sample'
+			'-c': '--chr',
+			'-g': '--genome',
+			'-n': '--name'
 		};
 
 
@@ -48,12 +48,12 @@ const parse = rawArgv => {
 			ensemble: args[ '--ensemble' ] || false,
 			output: args[ '--output' ] || false,
 			directory: args[ '--dir' ] || false,
-			chromosome: args[ '--chromosome' ] || false,
-			genome: args[ '--genome-assembly' ] || false,
-			sample: args[ '--sample' ] || false
+			chr: args[ '--chr' ] || false,
+			genome: args[ '--genome' ] || false,
+			name: args[ '--name' ] || false
 		};
 
-	let { pointCloud, ensemble, output, directory, chromosome, genome, sample } = result;
+	let { pointCloud, ensemble, output, directory, chr, genome, name } = result;
 
 	result.directory = false === directory ? process.cwd() : directory;
 
@@ -61,14 +61,14 @@ const parse = rawArgv => {
 
 	if (false === output) {
 		error = new Error('--output option is missing. Output filename. Must use the suffix: .sw');
-	} else if (false === sample) {
-		error = new Error('--sample options is missing. Must provide sample information.');
-	} else if (false === chromosome) {
-		error = new Error('--chromosome option is missing. Must provide a chromosome name.');
+	} else if (false === name) {
+		error = new Error('--name options is missing. Must provide name.');
+	} else if (false === chr) {
+		error = new Error('--chr option is missing. Must provide chromosome name.');
 	} else if (false === genome) {
-		error = new Error('--gemome option is missing. Must provide a genome assembly name.');
+		error = new Error('--gemome option is missing. Must provide genome name.');
 	} else if (pointCloud && ensemble) {
-		error = new Error('--point-cloud or --ensemble option is missing. Must provide either with a filename.');
+		error = new Error('--point-cloud or --ensemble option is missing. Must provide either.');
 	} else if (pointCloud && false === ensemble) {
 		// do nothing
 	} else if (false === pointCloud && ensemble) {
@@ -95,8 +95,8 @@ const cli = async args => {
 	}
 
 	try {
-		let { pointCloud, ensemble, output, directory, chromosome, genome, sample } = result;
-		await ingestData({ pointCloud, ensemble, output, directory, chromosome, genome, sample });
+		let { pointCloud, ensemble, output, directory, chr, genome, name } = result;
+		await ingestData({ pointCloud, ensemble, output, directory, chr, genome, name });
 	} catch (e) {
 		describeError(e);
 		usage();
@@ -112,10 +112,10 @@ const usage = () => {
 
 	usage_message.push('');
 	usage_message.push('Pointcloud File');
-	usage_message.push('swc --pointcloud filename --output filename [--dir output-directory] --chromosome name --genome-assembly assembly --sample sample-name');
+	usage_message.push('swc --pointcloud filename --output filename [--dir output-directory] --genome genome --name name');
 	usage_message.push('');
 	usage_message.push('Ensemble File');
-	usage_message.push('swc --ensemble filename --output filename [--dir output-directory] --chromosome name --genome-assembly assembly --sample sample-name');
+	usage_message.push('swc --ensemble filename --output filename [--dir output-directory] --genome genome --name name');
 
 	usage_message.push('');
 	usage_message.push('Options have the following aliases. Either may be used:');
@@ -123,9 +123,8 @@ const usage = () => {
 	usage_message.push('--ensemble, -e');
 	usage_message.push('--output, -o');
 	usage_message.push('--dir, -d');
-	usage_message.push('--chromosome, -c');
-	usage_message.push('--genome-assembly, -g');
-	usage_message.push('--sample, -s');
+	usage_message.push('--genome, -g');
+	usage_message.push('--name, -n');
 
 	usage_message.push('');
 	usage_message.push('Example Point Cloud File (https://www.dropbox.com/s/lt9fyrhry8lbdqi/2017-08-03-19-34-25_Location-01.csv?dl=0)');

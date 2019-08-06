@@ -2,7 +2,7 @@ class PointCloudConverter {
 
     constructor () {}
 
-    convert({ path, chromosome, genome, sample, string }) {
+    convert({ path, chr, genome, name, string }) {
 
         let raw = string.split(/\r?\n/);
 
@@ -12,11 +12,8 @@ class PointCloudConverter {
         // discard initial on-liner
         lines.shift();
 
-        console.time(`convert point-cloud file with ${ lines.length } points`);
+        console.time(`convertion of point-cloud file ${ path } with ${ lines.length } points`);
 
-        let segments = {};
-
-        let trace;
         let hash = {};
         for (let line of lines) {
 
@@ -33,10 +30,17 @@ class PointCloudConverter {
         }
 
         let output = [];
-        output.push(`# Conversion of point cloud file ${ path }`);
-        output.push(`${ sample }`);
-        output.push(`${ genome }`);
-        output.push(`bed ${ chromosome }`);
+        output.push(`##format=sw1 name=${ name } genome=${ genome }`);
+
+        let column_headings = [];
+        column_headings.push('chromosome');
+        column_headings.push('start');
+        column_headings.push('end');
+        column_headings.push('x');
+        column_headings.push('y');
+        column_headings.push('z');
+
+        output.push(column_headings.join('\t'));
 
         let keys = Object.keys(hash);
         for (let key of keys) {
@@ -46,12 +50,12 @@ class PointCloudConverter {
 
             for (let row of trace) {
                 const { startBP, endBP, x, y, z } = row;
-                output.push(`${ startBP } ${ endBP } ${ x } ${ y } ${ z }`)
+                output.push(`${ chr } ${ startBP } ${ endBP } ${ x } ${ y } ${ z }`)
             }
 
         }
 
-        console.timeEnd(`convert point-cloud file with ${ lines.length } points`);
+        console.timeEnd(`convertion of point-cloud file ${ path } with ${ lines.length } points`);
 
         return output.join('\n');
 
