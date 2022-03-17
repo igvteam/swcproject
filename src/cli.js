@@ -112,10 +112,10 @@ const usage = () => {
 
 	usage_message.push('');
 	usage_message.push('Pointcloud File');
-	usage_message.push('swc --pointcloud filename --output filename [--dir output-directory] --genome genome --name name');
+	usage_message.push('swc --pointcloud csv-file.csv --output spacewalk-file.sw [--dir output-directory] --genome genome --name name');
 	usage_message.push('');
 	usage_message.push('Ensemble File');
-	usage_message.push('swc --ensemble filename --output filename [--dir output-directory] --genome genome --name name');
+	usage_message.push('swc --ensemble csv-file.csv --output spacewalk-file.sw [--dir output-directory] --genome genome --name name');
 
 	usage_message.push('');
 	usage_message.push('Options have the following aliases. Either may be used:');
@@ -123,6 +123,7 @@ const usage = () => {
 	usage_message.push('--ensemble, -e');
 	usage_message.push('--output, -o');
 	usage_message.push('--dir, -d');
+	usage_message.push('--chr, -c');
 	usage_message.push('--genome, -g');
 	usage_message.push('--name, -n');
 
