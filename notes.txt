@@ -1,3 +1,7 @@
+# Refer to
+https://www.twilio.com/blog/how-to-build-a-cli-with-node-js
+for tutorial on How to build a CLI with Node.js
+
 # Ensemble file
 -e ensemble-file/HCT116_chr21-34-37Mb_auxin_cellDiv.csv -o ensemble_file_conversion.sw -c chr21 -g hg38 -n HCT116
 
