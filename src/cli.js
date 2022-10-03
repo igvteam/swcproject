@@ -108,7 +108,7 @@ const usage = () => {
 
 	let usage_message = [];
 
-	usage_message.push('Usage:');
+	usage_message.push('The Usage Is:');
 
 	usage_message.push('');
 	usage_message.push('Pointcloud File');
