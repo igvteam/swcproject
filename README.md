@@ -1,10 +1,10 @@
 ## @dugla/swc
 @dugla/swc is  CLI (command line tool) to support the [SpaceWalk](https://github.com/igvteam/spacewalk) project. 
-Use this tool to convert a legacy ensemble or point-cloud file to the file format supported by [SpaceWalk](https://github.com/igvteam/spacewalk).
+Use this tool to convert ball and stick or point-cloud files (.csv) to [SpaceWalk](https://github.com/igvteam/spacewalk) (.sw) format.
 
 ## Requirements
-- Node >= v10.13.0
-- NPM >= v6.9.0
+- Node >= v16.16.0
+- NPM >= v8.4.1
 
 ### Installation
 ````
@@ -34,7 +34,7 @@ Options have the following aliases. Either may be used:
 --genome-assembly, -g
 ```
 
-[Example Point Cloud File](https://www.dropbox.com/s/lt9fyrhry8lbdqi/2017-08-03-19-34-25_Location-01.csv?dl=0)
+[Example Point Cloud File](https://www.dropbox.com/s/qzk70g1lz5ztrhg/point_cloud_file_conversion.sw?dl=0)
 
 snippet ...
 ```
@@ -45,7 +45,7 @@ genome_start,genome_end,size_kb,x,y,z
 ...
 ```
 
-[Example Ensemble File](https://www.dropbox.com/s/ycbj30umsu0y809/IMR90_chr21-18-20Mb.csv?dl=0)
+[Example Ensemble File](https://www.dropbox.com/s/j6ci3m3lne07bhy/ensemble_file_conversion.sw?dl=0)
 
 snippet ...
 
